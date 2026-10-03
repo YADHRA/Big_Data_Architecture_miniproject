@@ -1,0 +1,1 @@
+3a74ef73ba8acc7176c4a54e83d575c95fbe66069c61b30bea511d39e07b575e  data/raw/application_data_consumption_breakdown.parquet

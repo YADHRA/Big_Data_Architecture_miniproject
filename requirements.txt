@@ -1,5 +1,6 @@
 # Core
 pyarrow
 pandas
+huggingface_hub
 # Added in later stages:
 # pyspark  (Stage 6)
