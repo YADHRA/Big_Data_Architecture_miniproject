@@ -1,0 +1,54 @@
+WARNING: Using incubator modules: jdk.incubator.vector
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+26/10/03 18:45:28 WARN Utils: Your hostname, DESKTOP-GNF7LEU, resolves to a loopback address: 127.0.1.1; using 10.255.255.254 instead (on interface lo)
+26/10/03 18:45:28 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+26/10/03 18:45:29 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+========================================================================
+STAGE 14 — CUSTOMER CONSISTENCY CHECK
+========================================================================
+
+1. CUSTOMER-ID RANGE / COLLISION HYPOTHESIS
+Numeric customer ID minimum: 1,000,043
+Numeric customer ID maximum: 9,999,998
+Unique numeric IDs: 765,245
+Observed ID-space size: 8,999,956
+Poisson-style lambda: 0.088889
+
+Expected customer counts under a uniform random-collision model:
+  1 session(s): 731,957.5
+  2 session(s): 32,531.6
+  3 session(s): 963.9
+  4 session(s): 21.4
+  5 session(s): 0.4
+
+Observed customer counts:
+  1 session(s): 731,479
+  2 session(s): 32,802
+  3 session(s): 940
+  4 session(s): 23
+  5 session(s): 1
+
+NOTE: The Poisson calculation is only a reference model under a uniform random-ID assumption. It is not proof of how the dataset was generated.
+
+2. EXACTLY-TWO-SESSION CUSTOMER PAIRING
+Exactly-two customers: 32,802
+Earlier/later data correlation: 0.000243
+Earlier/later duration correlation: -0.005232
+Same app: 6,567 (20.02%)
+Same operator: 9,499 (28.96%)
+Same network: 15,994 (48.76%)
+Expected same-app rate under independence: 20.30%
+Expected same-operator rate under independence: 29.02%
+Expected same-network rate under independence: 48.93%
+
+3. INTERPRETATION
+These measurements are descriptive consistency checks only. They do not establish causality, user identity, or the dataset generation process.
+The Poisson calculation is only a reference comparison under a uniform random-ID assumption.
+Earlier/later correlations describe association between the two sessions of exactly-two-session customers; they are not causal estimates.
+
+========================================================================
+STAGE 14 CONSISTENCY CHECK: COMPLETE
+========================================================================

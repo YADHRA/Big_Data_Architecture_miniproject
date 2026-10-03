@@ -1,0 +1,41 @@
+========================================================================
+STAGE 13B — FINAL K-MEANS MODEL
+========================================================================
+
+Selected K: 3
+Seed: 42
+Expected rows: 800,000
+Expected vector length: 10
+
+Final silhouette: 0.501553
+WSSSE: 1052827.2577
+Iterations: 10
+
+Cluster 0: 332,417 (41.55%)
+Cluster 1: 128,550 (16.07%)
+Cluster 2: 339,033 (42.38%)
+
+Cluster 0:
+  Average data: 81.44 MB
+  Average duration: 136.45 min
+
+Cluster 1:
+  Average data: 360.12 MB
+  Average duration: 90.62 min
+
+Cluster 2:
+  Average data: 81.51 MB
+  Average duration: 45.63 min
+
+FINAL VALIDATION
+========================================================================
+Assignments preserve rows/IDs: True
+Cluster IDs/sizes valid: True
+Converged before iteration cap: True (10 < 50)
+Unscaled centers match actual cluster averages: True
+Saved model reload check: True
+Hive table row count valid: True
+
+STAGE 13 FINAL CHECKS: PASSED
+assignments=True, clusters=True, converged=True, centers=True, model=True, hive=True
+========================================================================
