@@ -1,0 +1,188 @@
+=== 1. SHAPE ===
+rows: 800000 | columns: 10
+
+=== 2. DATA TYPES ===
+session_id                             str
+timestamp                   datetime64[ns]
+customer_id                            str
+operator                               str
+app_name                               str
+app_category                           str
+data_consumed_mb                   float64
+session_duration_minutes             int64
+network_type                           str
+time_of_day                            str
+
+=== 3. NULLS PER COLUMN ===
+session_id                  0
+timestamp                   0
+customer_id                 0
+operator                    0
+app_name                    0
+app_category                0
+data_consumed_mb            0
+session_duration_minutes    0
+network_type                0
+time_of_day                 0
+
+=== 4. EMPTY / WHITESPACE STRINGS ===
+session_id      blank=0  leading/trailing spaces=0
+customer_id     blank=0  leading/trailing spaces=0
+operator        blank=0  leading/trailing spaces=0
+app_name        blank=0  leading/trailing spaces=0
+app_category    blank=0  leading/trailing spaces=0
+network_type    blank=0  leading/trailing spaces=0
+time_of_day     blank=0  leading/trailing spaces=0
+
+=== 5. DUPLICATES ===
+fully duplicate rows        : 0
+duplicate session_id values : 0
+
+=== 6. IDENTIFIERS ===
+unique session_id  : 800000
+unique customer_id : 765245
+customers with 1 session   : 731479 (95.59% of customers)
+customers with >=2 sessions: 33766
+max sessions per customer  : 5
+session count distribution :
+1    731479
+2     32802
+3       940
+4        23
+5         1
+session_id length distribution: {11: 800000}
+customer_id length distribution: {11: 800000}
+sample session_id : SES00000001 | sample customer_id: CUST5094019
+
+=== 7. TIMESTAMP ===
+min: 2025-09-01 00:00:00 | max: 2025-10-01 23:00:00
+distinct dates: 31
+rows per date (first 5 / last 5):
+timestamp
+2025-09-01    25634
+2025-09-02    25421
+2025-09-03    25958
+2025-09-04    25633
+2025-09-05    25836
+timestamp
+2025-09-27    25640
+2025-09-28    25942
+2025-09-29    25971
+2025-09-30    25699
+2025-10-01    25992
+
+=== 8. CATEGORICAL COLUMNS ===
+
+--- operator (unique = 4) ---
+operator
+MTN        303907
+Airtel     223493
+Glo        192391
+9mobile     80209
+
+--- app_name (unique = 8) ---
+app_name
+WhatsApp     279529
+YouTube      144214
+Facebook     120097
+Instagram     96076
+TikTok        64090
+Twitter/X     40104
+Other         32061
+Telegram      23829
+
+--- app_category (unique = 3) ---
+app_category
+social       559635
+streaming    208304
+other         32061
+
+--- network_type (unique = 4) ---
+network_type
+4G    519517
+3G    199957
+5G     40355
+2G     40171
+
+--- time_of_day (unique = 4) ---
+time_of_day
+morning      233380
+night        233344
+afternoon    166965
+evening      166311
+
+=== 9. APP -> CATEGORY MAPPING (is each app in exactly one category?) ===
+app_name
+Facebook     1
+Instagram    1
+Other        1
+Telegram     1
+TikTok       1
+Twitter/X    1
+WhatsApp     1
+YouTube      1
+app_category  app_name 
+other         Other         32061
+social        Facebook     120097
+              Instagram     96076
+              Telegram      23829
+              Twitter/X     40104
+              WhatsApp     279529
+streaming     TikTok        64090
+              YouTube      144214
+
+=== 10. NUMERIC SUMMARY ===
+                             count        mean         std  min    1%     5%    25%    50%     75%       95%     99%     max
+data_consumed_mb          800000.0  126.250771  118.411790  1.0  6.41  13.59  44.37  84.11  166.34  413.8405  482.81  499.99
+session_duration_minutes  800000.0   90.596051   51.958949  1.0  2.00   9.00  46.00  91.00  136.00  172.0000  179.00  180.00
+data_consumed_mb <= 0          : 0
+session_duration_minutes <= 0  : 0
+data_consumed_mb is NaN/inf    : 0
+
+=== 11. DATA CONSUMED BY CATEGORY (why one global anomaly threshold may mislead) ===
+                 count        mean         std    min      50%     95%     99%     max
+app_category                                                                          
+other          32061.0   25.492958   14.148527   1.00   25.540   47.61   49.52   50.00
+social        559635.0   76.605207   49.637321   5.00   68.220  179.25  195.82  200.00
+streaming     208304.0  275.137934  129.798618  50.01  274.905  477.51  495.62  499.99
+
+=== 12. DATA CONSUMED BY NETWORK TYPE ===
+                 count        mean         std   min    50%      95%     max
+network_type                                                                
+2G             40171.0  126.911069  118.964952  1.02  84.43  414.520  499.98
+3G            199957.0  125.881520  118.121224  1.01  83.97  412.922  499.98
+4G            519517.0  126.305166  118.476842  1.00  84.11  414.140  499.99
+5G             40355.0  126.722845  118.458772  1.00  84.39  414.070  499.97
+
+=== 13. IS time_of_day REDUNDANT WITH timestamp HOUR? ===
+time_of_day  afternoon  evening  morning  night
+timestamp                                      
+0                    0        0        0  33552
+1                    0        0        0  33142
+2                    0        0        0  33606
+3                    0        0        0  33161
+4                    0        0        0  33350
+5                    0        0    33389      0
+6                    0        0    33332      0
+7                    0        0    33268      0
+8                    0        0    33315      0
+9                    0        0    33634      0
+10                   0        0    33289      0
+11                   0        0    33153      0
+12               33664        0        0      0
+13               33208        0        0      0
+14               33399        0        0      0
+15               33560        0        0      0
+16               33134        0        0      0
+17                   0    33404        0      0
+18                   0    33289        0      0
+19                   0    33277        0      0
+20                   0    33038        0      0
+21                   0    33303        0      0
+22                   0        0        0  33234
+23                   0        0        0  33299
+
+=== 14. SESSION DURATION vs DATA (correlation) ===
+                          data_consumed_mb  session_duration_minutes
+data_consumed_mb                  1.000000                 -0.000433
+session_duration_minutes         -0.000433                  1.000000
