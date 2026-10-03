@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Data files
+data/raw/*
+data/processed/*
+data/sample/*
+
+# Generated results
+results/*
+logs/*
+
+# Spark
+spark-warehouse/
+*.crc
+
+# Hadoop
+*.log
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Environment files
+.env
