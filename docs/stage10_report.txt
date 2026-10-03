@@ -1,0 +1,139 @@
+WARNING: Using incubator modules: jdk.incubator.vector
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+26/10/03 14:05:12 WARN Utils: Your hostname, DESKTOP-GNF7LEU, resolves to a loopback address: 127.0.1.1; using 10.255.255.254 instead (on interface lo)
+26/10/03 14:05:12 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+26/10/03 14:05:13 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+
+===== HIVE SETTINGS =====
+catalog implementation: hive
+warehouse dir         : hdfs://localhost:9000/user/hive/warehouse
+
+===== CREATING DATABASE AND TABLES =====
+>> CREATE DATABASE IF NOT EXISTS internet_usage COMMENT 'Internet Usage Analytics: synthetic telecom application 
+26/10/03 14:05:21 WARN ObjectStore: Version information not found in metastore. hive.metastore.schema.verification is not enabled so recording the schema version 2.3.0
+26/10/03 14:05:21 WARN ObjectStore: setMetaStoreSchemaVersion called but recording version is disabled: version = 2.3.0, comment = Set by MetaStore yadhra@127.0.1.1
+>> DROP TABLE IF EXISTS internet_usage.raw_usage
+>> CREATE TABLE internet_usage.raw_usage USING PARQUET LOCATION 'hdfs://localhost:9000/internet_usage/raw_compat'
+26/10/03 14:05:25 WARN HiveExternalCatalog: Hive incompatible types found: timestamp_ntz. Persisting data source table `spark_catalog`.`internet_usage`.`raw_usage` into Hive metastore in Spark SQL specific format, which is NOT compatible with Hive.
+26/10/03 14:05:25 WARN SessionState: METASTORE_FILTER_HOOK will be ignored, since hive.security.authorization.manager is set to instance of HiveAuthorizerFactory.
+26/10/03 14:05:25 WARN HiveConf: HiveConf of name hive.internal.ss.authz.settings.applied.marker does not exist
+>> DROP TABLE IF EXISTS internet_usage.cleaned_usage
+>> CREATE TABLE internet_usage.cleaned_usage USING PARQUET LOCATION 'hdfs://localhost:9000/internet_usage/cleaned
+26/10/03 14:05:26 WARN HiveExternalCatalog: Hive incompatible types found: timestamp_ntz. Persisting data source table `spark_catalog`.`internet_usage`.`cleaned_usage` into Hive metastore in Spark SQL specific format, which is NOT compatible with Hive.
+
+===== DATABASES =====
++--------------+
+|namespace     |
++--------------+
+|default       |
+|internet_usage|
++--------------+
+
+===== TABLES IN internet_usage =====
++--------------+-------------+-----------+
+|namespace     |tableName    |isTemporary|
++--------------+-------------+-----------+
+|internet_usage|cleaned_usage|false      |
+|internet_usage|raw_usage    |false      |
++--------------+-------------+-----------+
+
+
+===== internet_usage.raw_usage: metadata =====
++--------+-----------------------------------------------+-------+
+|col_name|data_type                                      |comment|
++--------+-----------------------------------------------+-------+
+|Catalog |spark_catalog                                  |       |
+|Database|internet_usage                                 |       |
+|Table   |raw_usage                                      |       |
+|Type    |EXTERNAL                                       |       |
+|Provider|PARQUET                                        |       |
+|Location|hdfs://localhost:9000/internet_usage/raw_compat|       |
++--------+-----------------------------------------------+-------+
+
+root
+ |-- session_id: string (nullable = true)
+ |-- timestamp: timestamp_ntz (nullable = true)
+ |-- customer_id: string (nullable = true)
+ |-- operator: string (nullable = true)
+ |-- app_name: string (nullable = true)
+ |-- app_category: string (nullable = true)
+ |-- data_consumed_mb: double (nullable = true)
+ |-- session_duration_minutes: long (nullable = true)
+ |-- network_type: string (nullable = true)
+ |-- time_of_day: string (nullable = true)
+
+
+===== internet_usage.cleaned_usage: metadata =====
++--------+----------------------------------------------------------+-------+
+|col_name|data_type                                                 |comment|
++--------+----------------------------------------------------------+-------+
+|Catalog |spark_catalog                                             |       |
+|Database|internet_usage                                            |       |
+|Table   |cleaned_usage                                             |       |
+|Type    |EXTERNAL                                                  |       |
+|Provider|PARQUET                                                   |       |
+|Location|hdfs://localhost:9000/internet_usage/cleaned/usage_cleaned|       |
++--------+----------------------------------------------------------+-------+
+
+root
+ |-- session_id: string (nullable = true)
+ |-- timestamp: timestamp_ntz (nullable = true)
+ |-- customer_id: string (nullable = true)
+ |-- operator: string (nullable = true)
+ |-- app_name: string (nullable = true)
+ |-- app_category: string (nullable = true)
+ |-- data_consumed_mb: double (nullable = true)
+ |-- session_duration_minutes: long (nullable = true)
+ |-- network_type: string (nullable = true)
+ |-- time_of_day: string (nullable = true)
+
+
+===== VERIFICATION =====
+raw_usage rows              : 800000
+cleaned_usage rows          : 800000
+cleaned_usage total_data_mb: 101000617.12
+raw rows == cleaned rows         : True
+rows == Stage 9 total_sessions   : True (800000 vs 800000)
+data MB == Stage 9 total_data_mb : True (101000617.12 vs 101000617.12)
+category result differences vs Stage 9 (3 rows): 0
++------------+--------+-------------+
+|app_category|sessions|total_data_mb|
++------------+--------+-------------+
+|other       |32061   |817329.74    |
+|social      |559635  |4.287095514E7|
+|streaming   |208304  |5.731233224E7|
++------------+--------+-------------+
+
+STAGE 10 CHECKS: PASSED
+WARNING: Using incubator modules: jdk.incubator.vector
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+26/10/03 14:07:51 WARN Utils: Your hostname, DESKTOP-GNF7LEU, resolves to a loopback address: 127.0.1.1; using 10.255.255.254 instead (on interface lo)
+26/10/03 14:07:51 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+26/10/03 14:07:52 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+
+===== FRESH SESSION: tables found in the metastore =====
+26/10/03 14:08:02 WARN ObjectStore: Version information not found in metastore. hive.metastore.schema.verification is not enabled so recording the schema version 2.3.0
+26/10/03 14:08:02 WARN ObjectStore: setMetaStoreSchemaVersion called but recording version is disabled: version = 2.3.0, comment = Set by MetaStore yadhra@127.0.1.1
++--------------+-------------+-----------+
+|namespace     |tableName    |isTemporary|
++--------------+-------------+-----------+
+|internet_usage|cleaned_usage|false      |
+|internet_usage|raw_usage    |false      |
++--------------+-------------+-----------+
+
+===== QUERY BY NAME (no path, no schema given) =====
++--------+--------+
+|operator|sessions|
++--------+--------+
+|MTN     |303907  |
+|Airtel  |223493  |
+|Glo     |192391  |
+|9mobile |80209   |
++--------+--------+
+
