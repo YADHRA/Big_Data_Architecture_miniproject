@@ -1,0 +1,30 @@
+=== 1. SCHEMA CHECK ===
+type mismatches (expected, actual): none
+unexpected extra columns          : none
+
+=== 2. ROW COUNTS ===
+rows read                         : 800000
+rows after exact-duplicate removal: 800000
+exact duplicate rows removed      : 0
+distinct session_ids              : 800000
+duplicate session_ids (rows - distinct): 0
+
+=== 3. ROWS FAILING EACH RULE (a row can fail more than one) ===
+no_nulls_or_blanks          : 0
+id_format                   : 0
+timestamp_range             : 0
+data_positive_finite        : 0
+duration_valid              : 0
+operator_known              : 0
+network_known               : 0
+app_category_consistent     : 0
+time_of_day_consistent      : 0
+
+=== 4. RESULT ===
+valid rows   : 800000
+rejected rows: 0
+
+=== 5. EXTREMES ARE PRESERVED (ranges among VALID rows) ===
+data_consumed_mb          : 1.0 to 499.99
+session_duration_minutes  : 1 to 180
+timestamp                 : 2025-09-01 00:00:00 to 2025-10-01 23:00:00
