@@ -1,0 +1,66 @@
+STAGE 8 REPORT
+==============
+
+Stage:
+8 - Write cleaned data to HDFS and verify the written Parquet
+
+Objective:
+Write the validated usage dataset to HDFS as Snappy-compressed Parquet and verify that the written dataset can be read back correctly.
+
+Input:
+hdfs://localhost:9000/internet_usage/raw_compat/application_data_consumption_breakdown_us.parquet
+
+Output:
+hdfs://localhost:9000/internet_usage/cleaned/usage_cleaned
+
+Write format:
+Parquet
+
+Compression:
+Snappy
+
+Write configuration:
+- coalesce(1)
+- overwrite mode
+- Snappy compression
+- No partitionBy was used
+
+Validation before writing:
+- Rows read: 800000
+- Exact duplicate rows removed: 0
+- Valid rows: 800000
+- Rejected rows: 0
+- All Stage 7 validation rules passed
+- Extreme values were preserved
+
+HDFS output verification:
+- _SUCCESS file present
+- One Parquet part file present
+- HDFS filesystem status: HEALTHY
+- Written Parquet is readable independently with PyArrow
+- Written Parquet rows: 800000
+- Written Parquet columns: 10
+- Compression: SNAPPY
+
+Read-back verification:
+- Source rows: 800000
+- Written rows: 800000
+- Source columns: 10
+- Written columns: 10
+- Source distinct session IDs: 800000
+- Written distinct session IDs: 800000
+
+Fingerprint verification:
+- Source hash sum: -2086997873585372087214
+- Written hash sum: -2086997873585372087214
+- Hash sums equal: True
+- Row counts equal: True
+
+Verification result:
+PASSED
+
+Note:
+A full two-way Spark exceptAll comparison was attempted but was too expensive for the local WSL environment and was interrupted. The final verification used row counts, distinct session IDs, schema checks, and a deterministic xxhash64 row fingerprint aggregated using DECIMAL arithmetic. The source and written fingerprints matched exactly.
+
+Conclusion:
+The validated dataset was successfully written to HDFS as Snappy-compressed Parquet. The written dataset was successfully read back and verified against the validated source using multiple consistency checks.
