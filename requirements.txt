@@ -3,4 +3,4 @@ pyarrow
 pandas
 huggingface_hub
 # Added in later stages:
-# pyspark  (Stage 6)
+pyspark==4.1.1
