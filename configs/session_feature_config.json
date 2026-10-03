@@ -1,0 +1,71 @@
+{
+  "stage": 12,
+  "purpose": "Leak-free session-level K-Means input",
+  "input_table": "internet_usage.session_features",
+  "output_path": "hdfs://localhost:9000/internet_usage/features/session_ml_features",
+  "row_count": 800000,
+  "distinct_session_ids": 800000,
+  "feature_vector_length": 10,
+  "feature_order": [
+    "data_consumed_mb_standardized",
+    "session_duration_minutes_standardized",
+    "app_name_one_hot"
+  ],
+  "numeric_features": [
+    "data_consumed_mb",
+    "session_duration_minutes"
+  ],
+  "categorical_features": [
+    "app_name"
+  ],
+  "app_name_labels": [
+    "WhatsApp",
+    "YouTube",
+    "Facebook",
+    "Instagram",
+    "TikTok",
+    "Twitter/X",
+    "Other",
+    "Telegram"
+  ],
+  "app_name_one_hot_drop_last": false,
+  "standard_scaler": {
+    "withMean": true,
+    "withStd": true,
+    "mean": [
+      126.25077139999561,
+      90.59605125000353
+    ],
+    "std": [
+      118.411790418967,
+      51.95894888104155
+    ]
+  },
+  "excluded_from_ml": [
+    "session_id",
+    "customer_id",
+    "app_category",
+    "hour",
+    "time_of_day",
+    "is_night",
+    "day_of_week",
+    "is_weekend",
+    "operator",
+    "network_type",
+    "timestamp",
+    "usage_date",
+    "day_of_month",
+    "month"
+  ],
+  "validation": {
+    "rows_preserved": true,
+    "distinct_session_ids_preserved": true,
+    "vector_length": true,
+    "no_nulls": true,
+    "no_nan_or_inf": true,
+    "standard_scaling": true,
+    "independent_scaling_match": true,
+    "app_name_one_hot": true,
+    "read_back": true
+  }
+}

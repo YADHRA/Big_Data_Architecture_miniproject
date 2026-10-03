@@ -1,0 +1,108 @@
+{
+  "stage": 12,
+  "purpose": "Session-level K-Means feature selection",
+  "input_table": "internet_usage.session_features",
+  "row_count": 800000,
+
+  "selection_rule": {
+    "candidate_threshold_eta_squared": 0.01,
+    "redundant_feature_increment_threshold": 0.01
+  },
+
+  "always_included_numeric": [
+    "data_consumed_mb",
+    "session_duration_minutes"
+  ],
+
+  "selected_features": {
+    "numeric": [
+      "data_consumed_mb",
+      "session_duration_minutes"
+    ],
+    "categorical": [
+      "app_name"
+    ],
+    "binary": [],
+    "cyclic": []
+  },
+
+  "excluded_features": {
+    "redundant_coarser_feature": [
+      "app_category"
+    ],
+    "time_features": [
+      "hour",
+      "time_of_day",
+      "is_night"
+    ],
+    "day_features": [
+      "day_of_week",
+      "is_weekend"
+    ],
+    "other_features": [
+      "operator",
+      "network_type"
+    ],
+    "identifiers": [
+      "session_id",
+      "customer_id"
+    ],
+    "date_features": [
+      "timestamp",
+      "usage_date",
+      "day_of_month",
+      "month"
+    ]
+  },
+
+  "evidence": {
+    "app_name": {
+      "eta_squared_data": 0.597739,
+      "eta_squared_duration": 0.000019,
+      "incremental_eta_squared_beyond_app_category": 0.034102,
+      "decision": "selected"
+    },
+    "app_category": {
+      "eta_squared_data": 0.563638,
+      "eta_squared_duration": 0.000001,
+      "decision": "replaced_by_app_name"
+    },
+    "hour": {
+      "eta_squared_data": 0.000016,
+      "eta_squared_duration": 0.000050,
+      "decision": "excluded"
+    },
+    "time_of_day": {
+      "eta_squared_data": 0.000003,
+      "eta_squared_duration": 0.000003,
+      "decision": "excluded"
+    },
+    "is_night": {
+      "eta_squared_data": 0.000000,
+      "eta_squared_duration": 0.000001,
+      "decision": "excluded"
+    },
+    "day_of_week": {
+      "eta_squared_data": 0.000004,
+      "eta_squared_duration": 0.000001,
+      "decision": "excluded"
+    },
+    "is_weekend": {
+      "eta_squared_data": 0.000001,
+      "eta_squared_duration": 0.000000,
+      "decision": "excluded"
+    },
+    "operator": {
+      "eta_squared_data": 0.000007,
+      "eta_squared_duration": 0.000022,
+      "decision": "excluded"
+    },
+    "network_type": {
+      "eta_squared_data": 0.000005,
+      "eta_squared_duration": 0.000004,
+      "decision": "excluded"
+    }
+  },
+
+  "stage13_note": "Stage 13 should consume the final features vector without adding identifiers or excluded analytical features. Cluster stability should be evaluated across random seeds."
+}

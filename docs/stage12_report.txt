@@ -1,0 +1,90 @@
+STAGE 12 REPORT
+================
+
+Project:
+Internet Usage and Data Consumption Analytics using Apache Spark and Power BI
+
+Purpose:
+Build a leak-free session-level ML feature dataset for Stage 13 K-Means clustering.
+
+Input:
+Hive table: internet_usage.session_features
+
+Output:
+HDFS path: hdfs://localhost:9000/internet_usage/features/session_ml_features
+
+Rows:
+800,000
+
+Distinct session IDs:
+800,000
+
+Selected ML features:
+1. data_consumed_mb -> StandardScaler
+2. session_duration_minutes -> StandardScaler
+3. app_name -> StringIndexer + OneHotEncoder(dropLast=False)
+
+Feature vector length:
+10
+
+Feature vector order:
+Slot 0:
+  standardized data_consumed_mb
+
+Slot 1:
+  standardized session_duration_minutes
+
+Slots 2-9:
+  app_name one-hot encoding in StringIndexer label order:
+  ['WhatsApp', 'YouTube', 'Facebook', 'Instagram', 'TikTok', 'Twitter/X', 'Other', 'Telegram']
+
+Feature selection evidence:
+app_name eta-squared for data consumption = 0.597739
+app_name incremental eta-squared beyond app_category = 0.034102
+
+app_category was excluded because app_name is the finer feature
+and provided sufficient incremental information.
+
+Time-based features were excluded from K-Means because their
+eta-squared values were far below the 0.01 selection threshold.
+
+Excluded from ML:
+session_id
+customer_id
+app_category
+hour
+time_of_day
+is_night
+day_of_week
+is_weekend
+operator
+network_type
+timestamp
+usage_date
+day_of_month
+month
+
+Validation:
+Rows preserved: True
+Distinct session IDs preserved: True
+Vector length valid: True
+No null values: True
+No NaN/infinite feature values: True
+Standard scaling valid: True
+Independent scaling comparison: True
+App-name one-hot validation: True
+HDFS read-back validation: True
+Compared rows after read-back: 800,000
+Maximum read-back vector error: 0.000000000000e+00
+
+Methodology notes:
+- This is an unsupervised learning preparation stage.
+- No train/test split is required for this feature-building stage.
+- session_id and customer_id are identifiers, not ML features.
+- Standardization is applied only to the two continuous numeric features.
+- app_name is one-hot encoded without dropping a category.
+- Stage 13 should evaluate K-Means for multiple K values.
+- Stage 13 should evaluate cluster stability across random seeds.
+- Cluster labels should be assigned only after inspecting cluster profiles.
+- The dataset is synthetic, so findings describe the generated dataset
+  and should not be presented as measured real-world telecom behavior.
