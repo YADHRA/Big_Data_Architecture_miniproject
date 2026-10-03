@@ -1,0 +1,5 @@
+# Core
+pyarrow
+pandas
+# Added in later stages:
+# pyspark  (Stage 6)

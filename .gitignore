@@ -31,3 +31,14 @@ Thumbs.db
 
 # Environment files
 .env
+
+# Keep empty folders in Git
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+!data/sample/.gitkeep
+!results/.gitkeep
+!logs/.gitkeep
+
+# Hive / Spark local metastore
+metastore_db/
+derby.log
