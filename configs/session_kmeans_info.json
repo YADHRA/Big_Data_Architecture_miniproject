@@ -1,0 +1,88 @@
+{
+  "stage": 13,
+  "purpose": "Final session-level K-Means usage segmentation",
+  "k": 3,
+  "seed": 42,
+  "max_iter": 50,
+  "tol": 1e-06,
+  "iterations": 10,
+  "wssse": 1052827.2576516645,
+  "silhouette": 0.5015528440089064,
+  "suggested_k_by_sweep": 3,
+  "feature_vector_length": 10,
+  "numeric_features": [
+    "data_consumed_mb",
+    "session_duration_minutes"
+  ],
+  "app_name_labels": [
+    "WhatsApp",
+    "YouTube",
+    "Facebook",
+    "Instagram",
+    "TikTok",
+    "Twitter/X",
+    "Other",
+    "Telegram"
+  ],
+  "centers_scaled": [
+    [
+      -0.3783969085058623,
+      0.8824170321348646,
+      0.4166754407867227,
+      0.07984850353622107,
+      0.17811965092038012,
+      0.1424866959271036,
+      0.03924889521294037,
+      0.05975326171645855,
+      0.04804206764395323,
+      0.03582548425622035
+    ],
+    [
+      1.9750734728253403,
+      0.00047034884660022725,
+      0.0,
+      0.7073278879813303,
+      0.0,
+      0.0,
+      0.29267211201866977,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      -0.3778692038736051,
+      -0.8653756003558549,
+      0.4159447605395345,
+      0.0788831765639333,
+      0.1795901873858887,
+      0.1436762793002451,
+      0.03958316742028062,
+      0.05970215288777198,
+      0.04746145655437671,
+      0.03515881934796908
+    ]
+  ],
+  "centers_unscaled_numeric": {
+    "0": {
+      "data_consumed_mb": 81.44411597481442,
+      "session_duration_minutes": 136.44551271445937
+    },
+    "1": {
+      "data_consumed_mb": 360.1227575262511,
+      "session_duration_minutes": 90.62049008168029
+    },
+    "2": {
+      "data_consumed_mb": 81.50660242513237,
+      "session_duration_minutes": 45.63204466821302
+    }
+  },
+  "cluster_sizes": [
+    332417,
+    128550,
+    339033
+  ],
+  "model_path": "hdfs://localhost:9000/internet_usage/results/models/session_kmeans_k3",
+  "clusters_path": "hdfs://localhost:9000/internet_usage/results/session_clusters",
+  "hive_table": "internet_usage.session_clusters",
+  "note": "Cluster IDs are arbitrary labels. Cluster names should be assigned only after profile review."
+}

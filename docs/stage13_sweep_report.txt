@@ -1,0 +1,22 @@
+STAGE 13 — K-MEANS SWEEP REPORT
+========================================================================
+
+Rows: 800,000
+Distinct session IDs: 800,000
+Feature vector length: 10
+K values: [2, 3, 4, 5, 6, 7, 8]
+Seeds: [42, 7, 2024]
+
+SUMMARY BY K
+------------------------------------------------------------------------
+K=2 | silhouette=0.402615 | silhouette_std=0.000000 | WSSSE=1637736.1716 | ARI=1.000000 | min_share=49.9656% | stable=True | share_ok=True
+K=3 | silhouette=0.501581 | silhouette_std=0.000020 | WSSSE=1052794.9537 | ARI=0.989346 | min_share=16.0685% | stable=True | share_ok=True
+K=4 | silhouette=0.437277 | silhouette_std=0.029989 | WSSSE=940151.8736 | ARI=0.576685 | min_share=8.8561% | stable=False | share_ok=True
+K=5 | silhouette=0.407930 | silhouette_std=0.025610 | WSSSE=846015.8370 | ARI=0.685262 | min_share=8.2161% | stable=False | share_ok=True
+K=6 | silhouette=0.388938 | silhouette_std=0.012075 | WSSSE=751192.9505 | ARI=0.841374 | min_share=7.2570% | stable=True | share_ok=True
+K=7 | silhouette=0.412046 | silhouette_std=0.004588 | WSSSE=684684.0955 | ARI=0.778553 | min_share=7.2509% | stable=False | share_ok=True
+K=8 | silhouette=0.441203 | silhouette_std=0.002582 | WSSSE=638891.8627 | ARI=0.777394 | min_share=6.9045% | stable=False | share_ok=True
+
+Eligible K: [2, 3, 6]
+Best mean silhouette: 0.5015807972568165
+Selected K: 3
