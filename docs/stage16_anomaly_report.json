@@ -1,0 +1,81 @@
+{
+  "stage": "16",
+  "name": "Internet Usage Anomaly Detection",
+  "method": "Category-specific IQR",
+  "input_path": "hdfs://localhost:9000/internet_usage/cleaned/usage_cleaned",
+  "output_path": "hdfs://localhost:9000/internet_usage/results/usage_anomalies",
+  "hive_table": "internet_usage.usage_anomalies",
+  "input_rows": 800000,
+  "output_rows": 800000,
+  "iqr_multiplier": 1.5,
+  "percentile_accuracy": 100000,
+  "thresholds": [
+    {
+      "app_category": "other",
+      "sessions": 32061,
+      "q1_mb": 13.24,
+      "median_mb": 25.54,
+      "mean_mb": 25.49295842300611,
+      "q3_mb": 37.7,
+      "iqr_mb": 24.46,
+      "upper_bound_mb": 74.39,
+      "p99_mb": 49.52,
+      "max_mb": 50.0
+    },
+    {
+      "app_category": "social",
+      "sessions": 559635,
+      "q1_mb": 37.43,
+      "median_mb": 68.22,
+      "mean_mb": 76.60520721541539,
+      "q3_mb": 98.93,
+      "iqr_mb": 61.50000000000001,
+      "upper_bound_mb": 191.18,
+      "p99_mb": 195.82,
+      "max_mb": 200.0
+    },
+    {
+      "app_category": "streaming",
+      "sessions": 208304,
+      "q1_mb": 162.87,
+      "median_mb": 274.9,
+      "mean_mb": 275.1379341731291,
+      "q3_mb": 387.68,
+      "iqr_mb": 224.81,
+      "upper_bound_mb": 724.895,
+      "p99_mb": 495.62,
+      "max_mb": 499.99
+    }
+  ],
+  "anomaly_summary": [
+    {
+      "app_category": "other",
+      "sessions": 32061,
+      "anomaly_sessions": 0,
+      "anomaly_rate_percent": 0.0
+    },
+    {
+      "app_category": "social",
+      "sessions": 559635,
+      "anomaly_sessions": 11804,
+      "anomaly_rate_percent": 2.1092319100842514
+    },
+    {
+      "app_category": "streaming",
+      "sessions": 208304,
+      "anomaly_sessions": 0,
+      "anomaly_rate_percent": 0.0
+    }
+  ],
+  "total_anomalies": 11804,
+  "overall_anomaly_rate_percent": 1.4755,
+  "ground_truth_available": false,
+  "validation": {
+    "row_count_preserved": true,
+    "threshold_nulls_zero": true,
+    "negative_values_zero": true,
+    "anomaly_logic_valid": true,
+    "anomaly_flag_binary": true
+  },
+  "interpretation_note": "Anomalies represent unusually high internet usage within an application category. They are not fraud labels."
+}
