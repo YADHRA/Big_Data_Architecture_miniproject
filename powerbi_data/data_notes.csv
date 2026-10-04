@@ -1,0 +1,7 @@
+note_id,topic,text
+dataset,Synthetic data,The dataset is a synthetic telecom usage dataset designed to simulate application-level internet consumption patterns. It is not real customer data.
+architecture,Architecture,"Local/pseudo-distributed Big Data implementation using HDFS, Spark, Hive and Spark MLlib."
+anomaly_scope,Anomaly detection scope,"Usage anomaly detection only, not fraud detection. There are no ground-truth anomaly labels, so accuracy, precision, recall, F1 and ROC-AUC are not reported."
+anomaly_method,Anomaly method,Category-specific IQR thresholds were calculated during Stage 16. A session is flagged when its data consumption exceeds the threshold for its app category.
+customer_clusters,Customer segments caveat,"Customer clusters are descriptive aggregate usage segments for repeat customers. Shuffled-session controls produced similar silhouette values, so these clusters are not strong evidence of persistent individual customer behavior."
+session_clusters,Session clusters caveat,Session-level clusters should be interpreted descriptively. Clusters 0 and 2 had similar average data consumption and differed mainly in session duration.

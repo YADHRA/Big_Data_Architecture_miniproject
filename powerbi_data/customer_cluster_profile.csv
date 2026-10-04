@@ -1,0 +1,4 @@
+cluster,customer_count,avg_total_sessions,avg_total_data_mb,avg_data_mb,avg_session_duration_min,avg_max_session_data_mb,avg_unique_app_count,avg_unique_network_count,avg_weekend_sessions,avg_night_sessions,customer_share_pct,cluster_name
+0,19152,2.0322,180.3331,88.6942,90.2739,126.4249,2.0183,1.5225,0.5211,0.5889,56.7198,Moderate-Data Multi-App Customers
+1,5705,2.0079,143.5235,71.5022,90.9465,93.1897,1.0000,1.5183,0.5218,0.5939,16.8957,Low-Data Single-App Customers
+2,8909,2.0367,494.8120,243.5962,91.5852,382.2896,1.9184,1.5224,0.5375,0.6060,26.3845,High-Data Customers

@@ -1,0 +1,335 @@
+{
+  "stage": "17",
+  "title": "Power BI Data Preparation and Export",
+  "generated_at": "2026-10-04T07:39:11",
+  "source": "hdfs://localhost:9000/internet_usage/results/usage_anomalies",
+  "output_directory": "powerbi_data",
+  "total_sessions": 800000,
+  "unique_customers": 765245,
+  "total_anomalies": 11804,
+  "anomaly_rate_pct": 1.4755,
+  "files": [
+    {
+      "file": "kpi_summary.csv",
+      "rows": 1,
+      "columns": [
+        "total_sessions",
+        "unique_customers",
+        "total_data_mb",
+        "avg_data_mb",
+        "avg_duration_min",
+        "total_anomalies",
+        "anomaly_pct",
+        "first_timestamp",
+        "last_timestamp"
+      ],
+      "bytes": 235
+    },
+    {
+      "file": "usage_by_app.csv",
+      "rows": 8,
+      "columns": [
+        "app_name",
+        "app_category",
+        "sessions",
+        "total_data_mb",
+        "avg_data_mb",
+        "avg_duration_min",
+        "anomalies",
+        "anomaly_pct",
+        "session_share_pct",
+        "data_share_pct"
+      ],
+      "bytes": 760
+    },
+    {
+      "file": "usage_by_category.csv",
+      "rows": 3,
+      "columns": [
+        "app_category",
+        "sessions",
+        "total_data_mb",
+        "avg_data_mb",
+        "avg_duration_min",
+        "anomalies",
+        "anomaly_pct",
+        "session_share_pct",
+        "data_share_pct"
+      ],
+      "bytes": 333
+    },
+    {
+      "file": "usage_by_operator.csv",
+      "rows": 4,
+      "columns": [
+        "operator",
+        "sessions",
+        "total_data_mb",
+        "avg_data_mb",
+        "avg_duration_min",
+        "anomalies",
+        "anomaly_pct",
+        "session_share_pct",
+        "data_share_pct"
+      ],
+      "bytes": 407
+    },
+    {
+      "file": "usage_by_network.csv",
+      "rows": 4,
+      "columns": [
+        "network_type",
+        "sessions",
+        "total_data_mb",
+        "avg_data_mb",
+        "avg_duration_min",
+        "anomalies",
+        "anomaly_pct",
+        "session_share_pct",
+        "data_share_pct"
+      ],
+      "bytes": 391
+    },
+    {
+      "file": "usage_by_time_of_day.csv",
+      "rows": 4,
+      "columns": [
+        "time_of_day",
+        "sessions",
+        "total_data_mb",
+        "avg_data_mb",
+        "avg_duration_min",
+        "anomalies",
+        "anomaly_pct",
+        "session_share_pct",
+        "data_share_pct"
+      ],
+      "bytes": 420
+    },
+    {
+      "file": "usage_daily.csv",
+      "rows": 31,
+      "columns": [
+        "usage_date",
+        "sessions",
+        "total_data_mb",
+        "avg_data_mb",
+        "avg_duration_min",
+        "anomalies",
+        "anomaly_pct",
+        "session_share_pct",
+        "data_share_pct"
+      ],
+      "bytes": 2382
+    },
+    {
+      "file": "usage_hourly.csv",
+      "rows": 24,
+      "columns": [
+        "hour_of_day",
+        "sessions",
+        "total_data_mb",
+        "avg_data_mb",
+        "avg_duration_min",
+        "anomalies",
+        "anomaly_pct",
+        "session_share_pct",
+        "data_share_pct"
+      ],
+      "bytes": 1670
+    },
+    {
+      "file": "anomaly_thresholds.csv",
+      "rows": 3,
+      "columns": [
+        "app_category",
+        "anomaly_threshold_mb"
+      ],
+      "bytes": 87
+    },
+    {
+      "file": "anomaly_sessions.csv",
+      "rows": 11804,
+      "columns": [
+        "session_id",
+        "timestamp",
+        "customer_id",
+        "operator",
+        "app_name",
+        "app_category",
+        "data_consumed_mb",
+        "session_duration_minutes",
+        "network_type",
+        "time_of_day",
+        "anomaly_threshold_mb",
+        "anomaly_flag",
+        "anomaly_reason",
+        "ratio_to_threshold"
+      ],
+      "bytes": 1971556
+    },
+    {
+      "file": "session_cluster_summary.csv",
+      "rows": 3,
+      "columns": [
+        "session_cluster",
+        "sessions",
+        "total_data_mb",
+        "avg_data_mb",
+        "avg_duration_min",
+        "anomalies",
+        "anomaly_pct",
+        "session_share_pct"
+      ],
+      "bytes": 288
+    },
+    {
+      "file": "session_cluster_by_app.csv",
+      "rows": 18,
+      "columns": [
+        "session_cluster",
+        "app_name",
+        "sessions",
+        "total_data_mb",
+        "avg_data_mb"
+      ],
+      "bytes": 764
+    },
+    {
+      "file": "customer_cluster_profile.csv",
+      "rows": 3,
+      "columns": [
+        "cluster",
+        "customer_count",
+        "avg_total_sessions",
+        "avg_total_data_mb",
+        "avg_data_mb",
+        "avg_session_duration_min",
+        "avg_max_session_data_mb",
+        "avg_unique_app_count",
+        "avg_unique_network_count",
+        "avg_weekend_sessions",
+        "avg_night_sessions",
+        "customer_share_pct",
+        "cluster_name"
+      ],
+      "bytes": 580
+    },
+    {
+      "file": "data_notes.csv",
+      "rows": 6,
+      "columns": [
+        "note_id",
+        "topic",
+        "text"
+      ],
+      "bytes": 1171
+    }
+  ],
+  "checks": [
+    {
+      "check": "usage_by_app.csv session reconciliation",
+      "passed": true,
+      "detail": "800,000 vs 800,000"
+    },
+    {
+      "check": "usage_by_app.csv anomaly reconciliation",
+      "passed": true,
+      "detail": "11,804 vs 11,804"
+    },
+    {
+      "check": "usage_by_category.csv session reconciliation",
+      "passed": true,
+      "detail": "800,000 vs 800,000"
+    },
+    {
+      "check": "usage_by_category.csv anomaly reconciliation",
+      "passed": true,
+      "detail": "11,804 vs 11,804"
+    },
+    {
+      "check": "usage_by_operator.csv session reconciliation",
+      "passed": true,
+      "detail": "800,000 vs 800,000"
+    },
+    {
+      "check": "usage_by_operator.csv anomaly reconciliation",
+      "passed": true,
+      "detail": "11,804 vs 11,804"
+    },
+    {
+      "check": "usage_by_network.csv session reconciliation",
+      "passed": true,
+      "detail": "800,000 vs 800,000"
+    },
+    {
+      "check": "usage_by_network.csv anomaly reconciliation",
+      "passed": true,
+      "detail": "11,804 vs 11,804"
+    },
+    {
+      "check": "usage_by_time_of_day.csv session reconciliation",
+      "passed": true,
+      "detail": "800,000 vs 800,000"
+    },
+    {
+      "check": "usage_by_time_of_day.csv anomaly reconciliation",
+      "passed": true,
+      "detail": "11,804 vs 11,804"
+    },
+    {
+      "check": "usage_daily session reconciliation",
+      "passed": true,
+      "detail": "800,000 vs 800,000"
+    },
+    {
+      "check": "usage_daily anomaly reconciliation",
+      "passed": true,
+      "detail": "11,804 vs 11,804"
+    },
+    {
+      "check": "usage_hourly session reconciliation",
+      "passed": true,
+      "detail": "800,000 vs 800,000"
+    },
+    {
+      "check": "usage_hourly anomaly reconciliation",
+      "passed": true,
+      "detail": "11,804 vs 11,804"
+    },
+    {
+      "check": "anomaly_sessions row reconciliation",
+      "passed": true,
+      "detail": "11,804 vs 11,804"
+    },
+    {
+      "check": "one threshold per category",
+      "passed": true,
+      "detail": "3 vs 3"
+    },
+    {
+      "check": "anomaly_flag contains only 0/1",
+      "passed": true,
+      "detail": "0 invalid values"
+    },
+    {
+      "check": "all timestamps parsed",
+      "passed": true,
+      "detail": "0 invalid timestamps"
+    },
+    {
+      "check": "no null anomaly thresholds",
+      "passed": true,
+      "detail": "0 null thresholds"
+    }
+  ],
+  "warnings": [],
+  "caveats": [
+    "The dataset is a synthetic telecom usage dataset designed to simulate application-level internet consumption patterns. It is not real customer data.",
+    "Local/pseudo-distributed Big Data implementation using HDFS, Spark, Hive and Spark MLlib.",
+    "Usage anomaly detection only, not fraud detection. There are no ground-truth anomaly labels, so accuracy, precision, recall, F1 and ROC-AUC are not reported.",
+    "Category-specific IQR thresholds were calculated during Stage 16. A session is flagged when its data consumption exceeds the threshold for its app category.",
+    "Customer clusters are descriptive aggregate usage segments for repeat customers. Shuffled-session controls produced similar silhouette values, so these clusters are not strong evidence of persistent individual customer behavior.",
+    "Session-level clusters should be interpreted descriptively. Clusters 0 and 2 had similar average data consumption and differed mainly in session duration."
+  ]
+}

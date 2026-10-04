@@ -1,0 +1,4 @@
+app_category,sessions,total_data_mb,avg_data_mb,avg_duration_min,anomalies,anomaly_pct,session_share_pct,data_share_pct
+other,32061,817329.7400,25.4930,90.7991,0,0.0000,4.0076,0.8092
+social,559635,42870955.1400,76.6052,90.5612,11804,2.1092,69.9544,42.4462
+streaming,208304,57312332.2400,275.1379,90.6585,0,0.0000,26.0380,56.7445
