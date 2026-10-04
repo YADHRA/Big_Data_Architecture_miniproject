@@ -1,0 +1,54 @@
+{
+  "stage": "18A",
+  "generated_at": "2026-10-04T07:55:20",
+  "source": "hdfs://localhost:9000/internet_usage/results/usage_anomalies",
+  "output": "powerbi_data/usage_cube.csv",
+  "grain": [
+    "usage_date",
+    "app_name",
+    "app_category",
+    "operator",
+    "network_type",
+    "time_of_day"
+  ],
+  "cube_rows": 15540,
+  "source_totals": {
+    "sessions": 800000.0,
+    "data_mb": 101000617.12000121,
+    "duration_min": 72476841.0,
+    "anomalies": 11804.0,
+    "null_dates": 0.0
+  },
+  "checks": [
+    {
+      "check": "sessions",
+      "passed": true,
+      "detail": "800,000 vs 800,000"
+    },
+    {
+      "check": "anomalies",
+      "passed": true,
+      "detail": "11,804 vs 11,804"
+    },
+    {
+      "check": "total data",
+      "passed": true,
+      "detail": "101000617.1200 vs 101000617.1200"
+    },
+    {
+      "check": "total duration",
+      "passed": true,
+      "detail": "72476841.0000 vs 72476841.0000"
+    },
+    {
+      "check": "no null dates",
+      "passed": true,
+      "detail": "0 null usage_date values"
+    },
+    {
+      "check": "each app maps to one category",
+      "passed": true,
+      "detail": "8 apps, 8 app/category pairs"
+    }
+  ]
+}
