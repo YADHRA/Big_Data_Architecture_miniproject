@@ -1,0 +1,93 @@
+{
+  "stage": 15,
+  "part": "15A",
+  "purpose": "Leak-free repeat-customer K-Means input",
+  "input_table": "internet_usage.customer_features",
+  "output_path": "hdfs://localhost:9000/internet_usage/features/customer_ml_features",
+  "row_count": 33766,
+  "distinct_customer_ids": 33766,
+  "candidate_features": [
+    "total_sessions",
+    "total_data_mb",
+    "avg_data_mb",
+    "avg_session_duration_min",
+    "max_session_data_mb",
+    "unique_app_count",
+    "unique_network_count",
+    "weekend_sessions",
+    "night_sessions"
+  ],
+  "selected_features": [
+    "avg_data_mb",
+    "avg_session_duration_min",
+    "max_session_data_mb",
+    "unique_app_count"
+  ],
+  "excluded_features": [
+    "night_sessions",
+    "total_data_mb",
+    "total_sessions",
+    "unique_network_count",
+    "weekend_sessions"
+  ],
+  "stage12_evidence": {
+    "app_name_selected": true,
+    "network_type_selected": false,
+    "is_weekend_selected": false,
+    "is_night_selected": false,
+    "network_type_excluded": true,
+    "is_weekend_excluded": true,
+    "is_night_excluded": true
+  },
+  "rules": {
+    "R1_exact_redundancy": {
+      "dropped": [
+        "total_data_mb"
+      ],
+      "max_error": 1.1368683772161603e-13
+    },
+    "R2_near_constant": {
+      "threshold": 0.95,
+      "dropped": [
+        "total_sessions"
+      ]
+    },
+    "R3_stage12_evidence": {
+      "dropped": [
+        "unique_network_count",
+        "weekend_sessions",
+        "night_sessions"
+      ]
+    },
+    "R4_max_vs_average": {
+      "correlation": 0.9449624163624794,
+      "unexplained_fraction": 0.10704603166238424,
+      "threshold": 0.1,
+      "kept": true
+    }
+  },
+  "scaler": {
+    "withMean": true,
+    "withStd": true,
+    "mean": [
+      126.65966235266184,
+      90.7335579182217,
+      188.31831220754484,
+      1.819877983770661
+    ],
+    "std": [
+      83.61351480547069,
+      36.478106255008214,
+      131.81698651159888,
+      0.42387289757377905
+    ]
+  },
+  "validation": {
+    "rows_preserved": true,
+    "distinct_ids_preserved": true,
+    "vector_length": true,
+    "no_nulls": true,
+    "independent_scaling": true,
+    "readback": true
+  }
+}

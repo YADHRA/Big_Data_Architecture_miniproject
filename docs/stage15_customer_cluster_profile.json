@@ -1,0 +1,75 @@
+{
+  "stage": "15D",
+  "purpose": "Profile and interpret final K=3 repeat-customer clusters",
+  "input_customer_count": 33766,
+  "selected_k": 3,
+  "profile_path": "hdfs://localhost:9000/internet_usage/results/customer_cluster_profile",
+  "hive_table": "internet_usage.customer_cluster_profile",
+  "cluster_labels": {
+    "0": "Moderate-Data Multi-App Customers",
+    "1": "Low-Data Single-App Customers",
+    "2": "High-Data Customers"
+  },
+  "profiles": {
+    "0": {
+      "customer_count": 19152,
+      "customer_share_pct": 56.7198,
+      "avg_total_sessions": 2.0322,
+      "avg_total_data_mb": 180.3331,
+      "avg_data_mb": 88.6942,
+      "avg_session_duration_min": 90.2739,
+      "avg_max_session_data_mb": 126.4249,
+      "avg_unique_app_count": 2.0183,
+      "avg_unique_network_count": 1.5225,
+      "avg_weekend_sessions": 0.5211,
+      "avg_night_sessions": 0.5889,
+      "cluster_name": "Moderate-Data Multi-App Customers"
+    },
+    "1": {
+      "customer_count": 5705,
+      "customer_share_pct": 16.8957,
+      "avg_total_sessions": 2.0079,
+      "avg_total_data_mb": 143.5235,
+      "avg_data_mb": 71.5022,
+      "avg_session_duration_min": 90.9465,
+      "avg_max_session_data_mb": 93.1897,
+      "avg_unique_app_count": 1.0,
+      "avg_unique_network_count": 1.5183,
+      "avg_weekend_sessions": 0.5218,
+      "avg_night_sessions": 0.5939,
+      "cluster_name": "Low-Data Single-App Customers"
+    },
+    "2": {
+      "customer_count": 8909,
+      "customer_share_pct": 26.3845,
+      "avg_total_sessions": 2.0367,
+      "avg_total_data_mb": 494.812,
+      "avg_data_mb": 243.5962,
+      "avg_session_duration_min": 91.5852,
+      "avg_max_session_data_mb": 382.2896,
+      "avg_unique_app_count": 1.9184,
+      "avg_unique_network_count": 1.5224,
+      "avg_weekend_sessions": 0.5375,
+      "avg_night_sessions": 0.606,
+      "cluster_name": "High-Data Customers"
+    }
+  },
+  "labeling_method": {
+    "primary_metric": "Average data consumed per session",
+    "secondary_metric": "Average unique applications",
+    "excluded_metric_for_naming": "Average session duration",
+    "reason": "The three clusters have very similar average session durations, so duration was not used to distinguish cluster names."
+  },
+  "validation": {
+    "cluster_count": true,
+    "customer_total": true,
+    "non_null_labels": true,
+    "unique_cluster_names": true,
+    "customer_share_total": true,
+    "saved_hdfs_profile": true,
+    "hive_profile": true,
+    "evidence_based_labels": true,
+    "all_checks": true
+  },
+  "interpretation_note": "Clusters are descriptive aggregate usage segments. Shuffled-session customer controls produced similar silhouette values, so these segments should not be interpreted as strong evidence of persistent individual customer behavior."
+}

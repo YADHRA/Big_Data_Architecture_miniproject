@@ -1,0 +1,55 @@
+STAGE 15A — CUSTOMER FEATURE SELECTION
+============================================================
+
+Input rows: 33766
+Distinct customers: 33766
+
+Candidate features:
+  - total_sessions
+  - total_data_mb
+  - avg_data_mb
+  - avg_session_duration_min
+  - max_session_data_mb
+  - unique_app_count
+  - unique_network_count
+  - weekend_sessions
+  - night_sessions
+
+Feature decisions:
+R1 dropped: ['total_data_mb']
+R2 dropped: ['total_sessions']
+R3 dropped: ['unique_network_count', 'weekend_sessions', 'night_sessions']
+R4 correlation: 0.944962
+R4 unexplained fraction: 0.107046
+R4 kept: True
+
+Selected features:
+  - avg_data_mb
+  - avg_session_duration_min
+  - max_session_data_mb
+  - unique_app_count
+
+Stage 12 evidence:
+  app_name_selected: True
+  network_type_selected: False
+  is_weekend_selected: False
+  is_night_selected: False
+  network_type_excluded: True
+  is_weekend_excluded: True
+  is_night_excluded: True
+
+Scaler statistics:
+  avg_data_mb: mean=126.659662352662, std=83.613514805471
+  avg_session_duration_min: mean=90.733557918222, std=36.478106255008
+  max_session_data_mb: mean=188.318312207545, std=131.816986511599
+  unique_app_count: mean=1.819877983771, std=0.423872897574
+
+Validation:
+  rows preserved: PASSED
+  distinct IDs preserved: PASSED
+  vector length: PASSED
+  no nulls: PASSED
+  independent scaling: PASSED
+  HDFS readback: PASSED
+
+STAGE 15A CHECKS: PASSED

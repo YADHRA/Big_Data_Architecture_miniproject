@@ -1,0 +1,46 @@
+{
+  "k": 3,
+  "suggested_k_by_rules": 3,
+  "seed": 42,
+  "max_iter": 50,
+  "iterations": 9,
+  "wssse": 58689.25735471846,
+  "silhouette": 0.6052900636573686,
+  "selected_features": [
+    "avg_data_mb",
+    "avg_session_duration_min",
+    "max_session_data_mb",
+    "unique_app_count"
+  ],
+  "cluster_sizes": [
+    19152,
+    5705,
+    8909
+  ],
+  "centers_unscaled": {
+    "0": {
+      "avg_data_mb": 88.69420264202175,
+      "avg_session_duration_min": 90.2739391882484,
+      "max_session_data_mb": 126.4249362990809,
+      "unique_app_count": 2.0182748538011808
+    },
+    "1": {
+      "avg_data_mb": 71.50220566754314,
+      "avg_session_duration_min": 90.94653812445223,
+      "max_session_data_mb": 93.18973006134989,
+      "unique_app_count": 1.0000000000000429
+    },
+    "2": {
+      "avg_data_mb": 243.59621805664722,
+      "avg_session_duration_min": 91.58523216223296,
+      "max_session_data_mb": 382.2896329554382,
+      "unique_app_count": 1.9183971265012827
+    }
+  },
+  "model_path": "hdfs://localhost:9000/internet_usage/results/models/customer_kmeans_k3",
+  "clusters_path": "hdfs://localhost:9000/internet_usage/results/customer_clusters_k3",
+  "stage15b_selected_k": 3,
+  "stage15b_mean_silhouette": 0.605280852924321,
+  "stage15b_mean_pairwise_ari": 0.9998652772316349,
+  "note": "Cluster IDs are arbitrary labels. Names are assigned only after profile review."
+}

@@ -1,0 +1,54 @@
+STAGE 15B — CUSTOMER K-MEANS SWEEP REPORT
+========================================================================
+
+Customers: 33,766
+Distinct customer IDs: 33,766
+Feature vector length: 4
+Selected features:
+  - avg_data_mb
+  - avg_session_duration_min
+  - max_session_data_mb
+  - unique_app_count
+
+Session control input:
+  hdfs://localhost:9000/internet_usage/features/session_features
+
+K values: [2, 3, 4, 5, 6, 7, 8]
+Seeds: [42, 7, 2024]
+Control seeds: [11, 23]
+
+Selection rules:
+  Minimum cluster share: 1.00%
+  Mean pairwise ARI threshold: 0.80
+  Silhouette tie tolerance: 0.01
+
+REAL CUSTOMER K-MEANS SUMMARY
+------------------------------------------------------------------------
+K=2 | silhouette=0.539025 | silhouette_std=0.046366 | WSSSE=90337.7109 | ARI=0.288990 | min_share=17.8464% | stable=False | share_ok=True
+K=3 | silhouette=0.605281 | silhouette_std=0.000007 | WSSSE=58689.2589 | ARI=0.999865 | min_share=16.8957% | stable=True | share_ok=True
+K=4 | silhouette=0.555988 | silhouette_std=0.034145 | WSSSE=48003.6172 | ARI=0.710161 | min_share=3.0682% | stable=False | share_ok=True
+K=5 | silhouette=0.522481 | silhouette_std=0.015913 | WSSSE=41629.8590 | ARI=0.860122 | min_share=1.5607% | stable=True | share_ok=True
+K=6 | silhouette=0.474601 | silhouette_std=0.026877 | WSSSE=37871.6773 | ARI=0.622369 | min_share=4.9547% | stable=False | share_ok=True
+K=7 | silhouette=0.483904 | silhouette_std=0.014763 | WSSSE=32842.3137 | ARI=0.618754 | min_share=3.0652% | stable=False | share_ok=True
+K=8 | silhouette=0.475517 | silhouette_std=0.012800 | WSSSE=27692.0708 | ARI=0.752623 | min_share=2.9853% | stable=False | share_ok=True
+
+Eligible K: [3, 5]
+Best mean silhouette: 0.605280852924321
+Selected K: 3
+
+SHUFFLED-SESSION CONTROL RESULTS
+------------------------------------------------------------------------
+control_seed=11 | K=2 | silhouette=0.571421 | WSSSE=84218.6460 | iterations=7 | min_share=28.2710%
+control_seed=11 | K=3 | silhouette=0.603951 | WSSSE=58719.4598 | iterations=7 | min_share=16.9046%
+control_seed=11 | K=4 | silhouette=0.612639 | WSSSE=56021.8169 | iterations=12 | min_share=1.5400%
+control_seed=11 | K=5 | silhouette=0.553338 | WSSSE=39586.9692 | iterations=16 | min_share=3.1837%
+control_seed=11 | K=6 | silhouette=0.517994 | WSSSE=37505.5672 | iterations=36 | min_share=1.5252%
+control_seed=11 | K=7 | silhouette=0.509842 | WSSSE=33749.2127 | iterations=30 | min_share=1.5252%
+control_seed=11 | K=8 | silhouette=0.456235 | WSSSE=31103.5711 | iterations=50 | min_share=4.9103%
+control_seed=23 | K=2 | silhouette=0.569855 | WSSSE=84320.5794 | iterations=12 | min_share=28.4902%
+control_seed=23 | K=3 | silhouette=0.607294 | WSSSE=58662.0011 | iterations=31 | min_share=16.6173%
+control_seed=23 | K=4 | silhouette=0.431855 | WSSSE=61169.1966 | iterations=50 | min_share=3.8086%
+control_seed=23 | K=5 | silhouette=0.552966 | WSSSE=39629.7032 | iterations=18 | min_share=3.0919%
+control_seed=23 | K=6 | silhouette=0.436970 | WSSSE=36453.3631 | iterations=25 | min_share=11.7396%
+control_seed=23 | K=7 | silhouette=0.451256 | WSSSE=32730.5849 | iterations=50 | min_share=9.4444%
+control_seed=23 | K=8 | silhouette=0.447258 | WSSSE=30480.1352 | iterations=50 | min_share=1.4275%
