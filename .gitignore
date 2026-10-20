@@ -1,44 +1,46 @@
 # Python
-__pycache__/
-*.py[cod]
 .venv/
+**/.venv/
 venv/
+**/venv/
 env/
-
-# Jupyter
+__pycache__/
+**/__pycache__/
+*.py[cod]
 .ipynb_checkpoints/
 
-# Data files
+# Frontend
+**/node_modules/
+**/dist/
+
+# Data and generated results
 data/raw/*
 data/processed/*
 data/sample/*
-
-# Generated results
 results/*
 logs/*
 
-# Spark
+# Spark and Hadoop
 spark-warehouse/
 *.crc
-
-# Hadoop
 *.log
+**/metastore_db/
+**/derby.log
 
-# OS / IDE
+# OS and IDE
 .DS_Store
 Thumbs.db
 .vscode/
 
-# Environment files
+# Secrets and environment files
 .env
+.env.*
+!.env.example
+!**/.env.example
 
-# Keep empty folders in Git
+# Keep empty folders
 !data/raw/.gitkeep
 !data/processed/.gitkeep
 !data/sample/.gitkeep
 !results/.gitkeep
 !logs/.gitkeep
-
-# Hive / Spark local metastore
-metastore_db/
-derby.log
